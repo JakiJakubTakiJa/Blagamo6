@@ -1,4 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  devIndicators: {
+    buildActivity: false,
+  },
+  images: {
+    domains: ["img.clerk.com"],
+  },
+};
 
 export default nextConfig;
