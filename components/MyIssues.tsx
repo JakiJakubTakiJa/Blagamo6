@@ -4,6 +4,7 @@ import StatusBadge from "./StatusBadge";
 import Pagination from "./Pagination";
 import { getIssues } from "@/lib/actions/issues.actions";
 import { useSearchParams } from "next/navigation";
+import { currentUser } from "@clerk/nextjs/server";
 
 const MyIssues = async ({
   searchParams,
@@ -23,6 +24,12 @@ const MyIssues = async ({
     skip,
     pageSize
   );
+
+  const user = await currentUser();
+
+  if (!user) return null;
+
+  if (formattedIssues.length === 0) return null;
 
   return (
     <Card>
